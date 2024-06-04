@@ -1,0 +1,31 @@
+Om de leeruitkomsten aan te tonen met het Sudoku-project, het volgende plan:
+
+1. Codekwaliteit en logische opdeling:
+   - Je kunt de code verdelen in aparte modules:
+     - `sudoku_logic.c/.h` voor de spellogica.
+     - `user_interface.c/.h` voor invoer/uitvoer.
+     - `tests.c/.h` voor unit-tests.
+   - Vermijd globale variabelen en gebruik lokale variabelen binnen functies.
+   - Geef zinvolle en consistente namen aan variabelen, functies en modules, bijvoorbeeld `validate_move` in plaats van `check` voor een functie die zetvaliditeit controleert.
+   - Vervang magische getallen door betekenisvolle constanten, zoals `MAX_ROWS` en `MAX_COLUMNS` voor de grootte van het Sudoku-bord.
+   - Documenteer functies met pre- en postcondities om hun gedrag en verwachte resultaten te beschrijven.
+
+2. Pointers:
+   - Gebruik pointers om geheugen efficiënt te beheren, bijvoorbeeld om dynamisch geheugen toe te wijzen voor het Sudoku-bord.
+   - Implementeer functies die pointers gebruiken om data door te geven en aan te passen, zoals een functie om een zet op het bord te plaatsen.
+
+3. Arrays en C-strings:
+   - Gebruik arrays om het Sudoku-bord op te slaan, bijvoorbeeld als een tweedimensionale array van integers.
+   - Gebruik C-strings voor het verwerken van invoer en uitvoer van gebruikers, bijvoorbeeld voor het ontvangen en interpreteren van opdrachten zoals "plaats 5 op rij 3, kolom 2".
+
+4. Structs:
+   - Gebruik een struct om het Sudoku-bord logisch te groeperen, bijvoorbeeld met leden voor de grootte van het bord en de waarden in elke cel.
+   - Zorg voor duidelijke namen voor de structs, bijvoorbeeld `SudokuBoard`.
+
+5. Unit-testen:
+   - Implementeer unit-tests met een hoog dekkingspercentage om alle gedrag van je code te valideren, zoals tests voor het controleren van zetvaliditeit, het oplossen van het bord en het genereren van nieuwe puzzels.
+   - Zorg ervoor dat je tests laten zien dat alle geïmplementeerde functionaliteit correct werkt door middel van asserties die verwachte resultaten vergelijken met daadwerkelijke resultaten.
+
+6. Bit-manipulatie:
+   - Toon je kennis van bitwise-operatoren door ze te gebruiken voor efficiënte code, bijvoorbeeld voor het controleren van de geldigheid van een zet met behulp van bitmaskers.
+   - Overweeg bit-manipulatie voor het opslaan en manipuleren van bepaalde Sudoku-gerelateerde gegevens, zoals bitmaskers voor mogelijke waarden in elke cel om de status van elke waarde (gevuld of leeg) efficiënt te vertegenwoordigen.

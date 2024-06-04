@@ -1,0 +1,23 @@
+@startuml
+
+class game {
+    +is_valid_move(row: int, col: int, value: int): bool
+    +is_board_valid(): bool
+    +solve(): bool
+    +generate(): void
+}
+
+class user_interface {
+    +display_board(): void
+    +get_user_input(): string
+    +print_message(message: string): void
+}
+
+class tests {
+    +run_all_tests(): void
+}
+
+game --> tests
+user_interface --> tests
+
+@enduml
