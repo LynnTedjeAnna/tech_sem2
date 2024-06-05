@@ -5,9 +5,8 @@
 // leave resource_detector.h as last include!
 #include "resource_detector.h"
 
-unsigned int count_ones(unsigned int value)
-{
-    unsigned int count = 0;
+uint8_t count_ones(uint8_t value){
+    uint8_t count = 0;
 
     /* Examples:
 
@@ -18,8 +17,7 @@ unsigned int count_ones(unsigned int value)
     return count;
 }
 
-void make_bitmask(unsigned int width, unsigned int shift, unsigned int* mask)
-{
+void make_bitmask(uint8_t width, uint8_t shift, uint8_t* mask){
     /* Examples:
 
     width = 3, shift = 0 
@@ -34,8 +32,7 @@ void make_bitmask(unsigned int width, unsigned int shift, unsigned int* mask)
 }
 
 void apply_bitmask(
-            unsigned int value, unsigned int mask, unsigned int* masked_value)
-{
+            uint8_t value, uint8_t mask, uint8_t* masked_value){
     /* Example:
 
         value          =    0b 1100 1010
@@ -47,17 +44,16 @@ void apply_bitmask(
 }
 
 void flip_bit(
-            unsigned int value, 
-            unsigned int bit_index,
-            unsigned int* updated_value)
-{
+            uint8_t value,
+            uint8_t bit_index,
+            uint8_t* updated_value){
 
     /* Example:
 
        value          =    0b 1100 1010
        bit_index      =            3
        --------------------------------- 
-       updated_value  =    0b 1100 00101
+       updated_value  =    0b 1100 0110
 
     */
 }
@@ -65,8 +61,7 @@ void flip_bit(
 void extract_nibbles_from_byte(
             uint8_t value, 
             uint8_t* high_nibble, 
-            uint8_t* low_nibble)
-{
+            uint8_t* low_nibble){
     /* Examples:
 
     value          =    0b 1100 1010
@@ -74,29 +69,28 @@ void extract_nibbles_from_byte(
     high_nibble    =    0b 1100
     low_nible      =         0b 1010
 
-    value          =    0x F 9 (using hexidecimal notation)
+    value          =    0x C A (using hexadecimal notation)
     ----------------------------------
-    high_nibble    =    0xF
-    low_nible      =        0x9
+    high_nibble    =    0xC
+    low_nible      =        0xA
 
     */
 
 }
 
-void combine_nibles_to_byte(
-            uint8_t high_nibble, uint8_t low_nibble, uint8_t* value)
-{
+void combine_nibbles_to_byte(
+            uint8_t high_nibble, uint8_t low_nibble, uint8_t* value){
     /* Examples:
 
     high_nibble    =    0b 1100
-    low_nible      =         0b 1010
+    low_nibble      =         0b 1010
     ----------------------------------
     value          =    0b 1100 1010
 
-    high_nibble    =    0xF
-    low_nible      =        0x9
+    high_nibble    =    0xC
+    low_nibble      =        0xA
     ----------------------------------
-    value          =    0x F 9 (using hexidecimal notation)
+    value          =    0x C A (using hexadecimal notation)
 
     */
 }
