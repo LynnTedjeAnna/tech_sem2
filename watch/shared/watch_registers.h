@@ -42,8 +42,7 @@ void watch_registers_toggle_config_is_paused(uint8_t* config);
  *
  * @pre config may not be NULL.
  */
-void watch_registers_set_config_time_format(
-            uint8_t* config, time_format format);
+void watch_registers_set_config_time_format(uint8_t* config, time_format format);
 
 /*!
  * Update the configuration byte by updating the time update interval.
@@ -53,8 +52,7 @@ void watch_registers_set_config_time_format(
  *
  * @pre config may not be NULL.
  */
-void watch_registers_set_config_time_update_interval(
-            uint8_t* config, time_update_interval interval);
+void watch_registers_set_config_time_update_interval(uint8_t* config, time_update_interval interval);
 
 /*!
  * Retrieve the configuration settings.
@@ -67,9 +65,7 @@ void watch_registers_set_config_time_update_interval(
  *
  * @pre is_paused, format and interval may not be NULL.
  */
-void watch_registers_get_config_settings(
-            uint8_t config, bool* is_paused, time_format* format,
-            time_update_interval* interval);
+void watch_registers_get_config_settings(uint8_t config, bool* is_paused, time_format* format, time_update_interval* interval);
 
 /*!
   * Update the time bytes by updating the hours bits.
@@ -82,8 +78,7 @@ void watch_registers_get_config_settings(
   *
   * @pre time_bits_low and time_bits_high may not be NULL.
   */
-void watch_registers_set_time_hours(
-            uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t hours);
+void watch_registers_set_time_hours(uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t hours);
 
 /*!
   * Update the time bytes by updating the minutes bits.
@@ -96,8 +91,7 @@ void watch_registers_set_time_hours(
   *
   * @pre time_bits_low and time_bits_high may not be NULL.
   */
-void watch_registers_set_time_minutes(
-            uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t minutes);
+void watch_registers_set_time_minutes(uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t minutes);
 
 /*!
   * Update the time bytes by updating the seconds bits.
@@ -110,8 +104,7 @@ void watch_registers_set_time_minutes(
   *
   * @pre time_bits_low and time_bits_high may not be NULL.
   */
-void watch_registers_set_time_seconds(
-            uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t seconds);
+void watch_registers_set_time_seconds(uint8_t* time_bits_low, uint8_t* time_bits_high, uint8_t seconds);
 
 /*!
  * Retrieve the time fields.
@@ -124,9 +117,7 @@ void watch_registers_set_time_seconds(
  *
  * @pre hours, minutes and seconds may not be NULL.
  */
-void watch_registers_get_time(
-            uint8_t time_bits_low, uint8_t time_bits_high, uint8_t* hours,
-            uint8_t* minutes, uint8_t* seconds);
+void watch_registers_get_time(uint8_t time_bits_low, uint8_t time_bits_high, uint8_t* hours,uint8_t* minutes, uint8_t* seconds);
 
 /*!
   * Update the date bytes by updating the year bits.
@@ -139,8 +130,7 @@ void watch_registers_get_time(
   *
   * @pre date_bits_low and date_bits_high may not be NULL.
   */
-void watch_registers_set_date_year(
-            uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t year);
+void watch_registers_set_date_year(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t year);
 
 /*!
   * Update the date bytes by updating the month bits.
@@ -153,8 +143,7 @@ void watch_registers_set_date_year(
   *
   * @pre date_bits_low and date_bits_high may not be NULL.
   */
-void watch_registers_set_date_month(
-            uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t month);
+void watch_registers_set_date_month(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t month);
 
 /*!
   * Update the date bytes by updating the day_of_month bits.
@@ -167,9 +156,7 @@ void watch_registers_set_date_month(
   *
   * @pre date_bits_low and date_bits_high may not be NULL.
   */
-void watch_registers_set_date_day_of_month(
-            uint8_t* date_bits_low, uint8_t* date_bits_high,
-            uint8_t day_of_month);
+void watch_registers_set_date_day_of_month(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t day_of_month);
 
 /*!
  * Retrieve the date fields.
@@ -182,8 +169,6 @@ void watch_registers_set_date_day_of_month(
  *
  * @pre year, month and day_of_month may not be NULL.
  */
-void watch_registers_get_date(
-            uint8_t date_bits_low, uint8_t date_bits_high, uint8_t* year,
-            uint8_t* month, uint8_t* day_of_month);
+void watch_registers_get_date(uint8_t date_bits_low, uint8_t date_bits_high, uint8_t* year, uint8_t* month, uint8_t* day_of_month);
 
 #endif
