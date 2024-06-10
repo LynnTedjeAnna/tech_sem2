@@ -59,19 +59,32 @@ void watch_registers_get_time(uint8_t time_bits_low, uint8_t time_bits_high, uin
 
 void watch_registers_set_date_year(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t year){
     if (date_bits_low == NULL || date_bits_high == NULL){ return;}
-    
+    if (year > 127){ return;}
+    *date_bits_low |= (~(0b1 << 7) & year);
 }
 
 void watch_registers_set_date_month(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t month){
     if (date_bits_low == NULL || date_bits_high == NULL){ return;}
+    if (month > 12){ return;}
 
+    *date_bits_low = ((*date_bits_low & ~(0b1 << 7)) | month << 7);
+
+    *date_bits_high = (*date_bits_high & ~(0b111)) | ((month >> 1) & 0b111);
 }
 
 void watch_registers_set_date_day_of_month(uint8_t* date_bits_low, uint8_t* date_bits_high, uint8_t day_of_month){
     if (date_bits_low == NULL || date_bits_high == NULL){ return;}
-
+    if (day_of_month > 31){ return;}
+    *date_bits_high = (*date_bits_high & ~(0b11111 << 3)) | (day_of_month << 3);
 }
 
 void watch_registers_get_date(uint8_t date_bits_low, uint8_t date_bits_high, uint8_t* year, uint8_t* month, uint8_t* day_of_month){
+    if (year == NULL || month == NULL || day_of_month == NULL){ return;}
 
+    *year = date_bits_low & ~(0b1 << 7);
+
+    *month = date_bits_low >> 7;
+    *month |= (date_bits_high & 0b111) << 1;
+
+    *day_of_month = (date_bits_high & ~(0b111)) >> 3;
 }
