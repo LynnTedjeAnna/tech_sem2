@@ -17,7 +17,7 @@ public:
     void start_game();
 
     //Methode to choose game category
-    uint8_t game_category();
+    uint8_t category();
 
     //Methode to proceed to the next player's turn
     void next_roll();

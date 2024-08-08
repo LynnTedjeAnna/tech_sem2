@@ -11,82 +11,59 @@
 using namespace std;
 
 Game::Game() {}
-//todo: does not go 5 rounds
-uint8_t Game::game_category() {
+
+uint8_t Game::category() {
     //normal game
     if (start == 1){
-        return 13;
+        return  13;
     }
     //short game
     if (start == 2){
         return 5;
-    } else { return 0; }
+    } else {return 0;}
 }
 
 void Game::start_game() {
     printf("Do you want to play a game? \n");
     printf("answer 0 for NO, 1 for Standard and 2 for Short game mode. \n");
     scanf("%d", &start);
-    if (start == 1) {
-        game_category();
-        printf("Enter the number of players: \n");
-        scanf("%d", &num_players);
+    category();
+    printf("Enter the number of players: \n");
+    scanf("%d", &num_players);
 
-        // Initialize each player
-        for (int i = 0; i < num_players; ++i) {
-            players[i].initialize();
-        }
-        //loop through until every player had had its turn
-        for (int i = 0; i < num_players; ++i) {
-            std::cout << "Your turn: " << players[i].get_name() << "!\n";
-            printf("%s", "Your throw is: ");
-            //dice roll
-            for ( i = 0; i < 5; ++i) {
-                dices[i].roll();
-            }
-            //print dice value
-            for ( i = 0; i < 5; ++i) {
-                printf("%d ", dices[i].get_value());
-            }
-            printf("\n");
-            next_roll();
-            players[i].set_score(dices);
-        }
+    // Initialize each player
+    for (int i = 0; i < num_players; ++i) {
+        players[i].initialize();
     }
-    if (start == 2 ){
-        game_category();
-        printf("Enter the number of players: \n");
-        scanf("%d", &num_players);
-
-        // Initialize each player
-        for (int i = 0; i < num_players; ++i) {
-            players[i].initialize();
+    //loop through until every player had had its turn
+    for (int i = 0; i < num_players; ++i) {
+        std::cout << "Your turn: " << players[i].get_name() << "!\n";
+        printf("%s", "Your throw is: ");
+        //dice roll
+        for ( i = 0; i < 5; ++i) {
+            dices[i].roll();
         }
-        //loop through until every player had had its turn
-        for (int i = 0; i < num_players; ++i) {
-            std::cout << "Your turn: " << players[i].get_name() << "!\n";
-            printf("%s", "Your throw is: ");
-            //dice roll
-            for (int j = 0; j < 5; ++j) {
-                dices[j].roll();
-            }
-            //print dice value
-            for (int j = 0; j < 5; ++j) {
-                printf("%d ", dices[j].get_value());
-            }
-            printf("\n");
-            next_roll();
-            players[i].set_score(dices);
+        //print dice value
+        for ( i = 0; i < 5; ++i) {
+            printf("%d ", dices[i].get_value());
         }
-    }else {
-        printf("%s", " :( ");
+        printf("\n");
+        next_roll();
+        players[i].set_score(dices);
     }
+    //game has max number of rounds
+    for (int i = 0; i < category(); ++i) {
+        next_round();
+    }
+    end_game();
 }
 void Game::next_roll() {
     uint32_t reroll;
-    //You can reroll only two times per round
+    //You can re-roll only two times per round
     for (int i = 0; i < 2; ++i) {
-        printf("Do you want to reroll any of the dice? (Enter the index of the dice you want to reroll) \n");
+        printf("Do you want to re-roll any of the dice? \n"
+               "(Enter the index of the dice you want to re-roll, \n"
+               "end with input '0')\n");
         do {
             // get answer from user
             scanf("%d", &reroll);
@@ -125,7 +102,6 @@ void Game::next_round() {
 
 void Game::end_game() {
     //todo: who wins calc
-
     for (int i = 0; i < num_players; ++i) {
         printf("\n");
         std::cout << players[i].get_name() << ", your end score is: " << "\n";
