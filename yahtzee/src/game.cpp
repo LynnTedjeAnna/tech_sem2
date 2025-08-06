@@ -2,55 +2,40 @@
 // Created by Lynn Tedje Anna Meindertsma on 08 Apr 2024.
 //
 #include<iostream>
-#include<cstdlib>
 #include <string>
-#include <algorithm>
 
 #include "game.hpp"
 
 using namespace std;
 
-Game::Game() {}
-
 uint8_t Game::category() {
-    //normal game
-    if (start == 1){
+    // Standard game
+    if (cat == 1){
         return  13;
     }
-    //short game
-    if (start == 2){
+    // Short game
+    if (cat == 2){
         return 5;
     } else {return 0;}
 }
 
-void Game::start_game() {
-    printf("Do you want to play a game? \n");
-    printf("answer 0 for NO, 1 for Standard and 2 for Short game mode. \n");
-    scanf("%d", &start);
+void Game::start() {
+    printf("Do you want to play a game? \n"
+           "0: NO\n"
+           "1: STANDARD\n"
+           "2: SHORT (5 rounds)\n");
+    scanf("%d", &cat);
     category();
-    printf("Enter the number of players: \n");
+    printf("Enter the number of players:");
     scanf("%d", &num_players);
 
+    players = new Player[num_players];
     // Initialize each player
     for (int i = 0; i < num_players; ++i) {
         players[i].initialize();
-    }
-    //loop through until every player had had its turn
-    for (int i = 0; i < num_players; ++i) {
-        std::cout << "Your turn: " << players[i].get_name() << "!\n";
-        printf("%s", "Your throw is: ");
-        //dice roll
-        for ( i = 0; i < 5; ++i) {
-            dices[i].roll();
-        }
-        //print dice value
-        for ( i = 0; i < 5; ++i) {
-            printf("%d ", dices[i].get_value());
-        }
         printf("\n");
-        next_roll();
-        players[i].set_score(dices);
     }
+
     //game has max number of rounds
     for (int i = 0; i < category(); ++i) {
         next_round();
@@ -58,20 +43,26 @@ void Game::start_game() {
     end_game();
 }
 void Game::next_roll() {
-    uint32_t reroll;
+    std::string reroll;
     //You can re-roll only two times per round
     for (int i = 0; i < 2; ++i) {
         printf("Do you want to re-roll any of the dice? \n"
-               "(Enter the index of the dice you want to re-roll, \n"
-               "end with input '0')\n");
-        do {
-            // get answer from user
-            scanf("%d", &reroll);
-            if (reroll != 0) {
-                dices[reroll - 1].roll();
+               "(Enter the index of the dice(s) you want to re-roll\n"
+               "and press enter)\n");
+        scanf("%s", &reroll);
+
+        for (uint32_t j = 0; j < strlen(reroll.c_str()); j++) {
+            switch (reroll[j]) {
+                case '1': dices[0].roll(); break;
+                case '2': dices[1].roll(); break;
+                case '3': dices[2].roll(); break;
+                case '4': dices[3].roll(); break;
+                case '5': dices[4].roll(); break;
+                default: break;
             }
-        } while (reroll != 0);
-        printf("%s", "Your throw is: ");
+        }
+
+        printf("Your throw is: ");
         //print dice value
         for (int j = 0; j < 5; ++j) {
             printf("%d ", dices[j].get_value());
@@ -83,8 +74,8 @@ void Game::next_roll() {
 
 void Game::next_round() {
     for (int i = 0; i < num_players; ++i) {
-        printf("\n%s\n", "Next round begins");
-        std::cout << "Your turn: " << players[i].get_name() << "!\n";
+        printf("...............................Player:%s...............................\n", players[i].get_name().c_str());
+        players[i].print_score();
         printf("%s", "Your throw is: ");
         //dice roll
         for (int j = 0; j < 5; ++j) {
@@ -101,13 +92,6 @@ void Game::next_round() {
 }
 
 void Game::end_game() {
-    //todo: who wins calc
-    for (int i = 0; i < num_players; ++i) {
-        printf("\n");
-        std::cout << players[i].get_name() << ", your end score is: " << "\n";
-        printf("%d\n", players[i].get_total_score());
-    }
-
     // Sort players based on their total score (from highest to lowest)
     for (int i = 0; i < num_players - 1; ++i) {
         for (int j = i + 1; j < num_players; ++j) {
@@ -123,8 +107,7 @@ void Game::end_game() {
 
     // Print each player's ranking and score
     for (int i = 0; i < num_players; ++i) {
-        std::cout << players[i].get_name() << "\n";
-        printf("Your ranking is: %d\n", players[i].get_ranking());
+        printf("\n%s ranking is: %d\n", players[i].get_name().c_str(), players[i].get_ranking());
         printf("Your total score is: %d\n", players[i].get_total_score());
     }
 }
