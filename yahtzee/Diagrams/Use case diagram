@@ -5,7 +5,7 @@ left to right direction
 actor Player
 
 rectangle "Game" {
-    usecase "Start Game" as start_game
+    usecase "Start Game" as start
     usecase "Next Turn" as next_roll
     usecase "End Game" as end_game
 }
@@ -20,11 +20,11 @@ rectangle "Category" {
     usecase "Calculate Score" as calculate_score
 }
 
-Player --> start_game
+Player --> start
 Player --> next_roll
 Player --> end_game
 
-start_game --> set_score
+start --> set_score
 next_roll --> set_score
 end_game --> calc_total_score
 

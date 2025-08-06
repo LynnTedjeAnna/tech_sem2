@@ -3,14 +3,13 @@
 
 #include "game.hpp"
 
-// Create instances of the classes
+// Create instance of the class
 Game game;
 
-//Main loop
 int main(){
-
     // Providing a seed value
     srand((unsigned) time(NULL));
 
-    game.start_game();
+    //start game
+    game.start();
 }

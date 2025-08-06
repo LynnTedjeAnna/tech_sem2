@@ -5,15 +5,18 @@
 Player::Player() {}
 
 void Player::initialize() {
-    //todo: change to printf format
-    std::cout << "Hello Player, choose your name: \n";
-    std::cin >> name;
-    std::cout << "Welcome, " << name << "!\n";
+    printf("Hello Player, choose your name: \n");
+    scanf("%s", (char*)name.c_str());
+    // todo fix next player
+    printf("Welcome %s! \n", &name);
     scorecard = Scorecard();
 }
 
 void Player::set_score(const Dice dices[5]) {
     scorecard.set_score(dices);
+}
+void Player::print_score() {
+    scorecard.print_score();
 }
 
 std::string Player::get_name() {

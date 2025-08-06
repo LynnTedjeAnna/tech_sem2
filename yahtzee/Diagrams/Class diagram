@@ -16,7 +16,7 @@ class Player {
 
 class Game {
     ____
-    + start_game(): void
+    + start(): void
     + next_roll(): void
     + end_game(): void
 }

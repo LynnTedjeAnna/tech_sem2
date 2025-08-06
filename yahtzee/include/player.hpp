@@ -1,8 +1,6 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <string>
-#include <cstdint>
 #include "dice.hpp"
 #include "scorecard.hpp"
 
@@ -11,6 +9,7 @@ public:
     Player();
     void initialize();
     void set_score(const Dice dices[5]);
+    void print_score();
     std::string get_name();
     uint16_t get_total_score();
     uint8_t rounds();

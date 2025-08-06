@@ -4,17 +4,16 @@
 #ifndef YAHTZEE_GAME_HPP
 #define YAHTZEE_GAME_HPP
 
-#include <cstdint>
 #include "dice.hpp"
 #include "player.hpp"
 
 class Game {
 public:
     //Constructor
-    Game();
+    Game() = default;
 
     //Methode to start the game
-    void start_game();
+    void start();
 
     //Methode to choose game category
     uint8_t category();
@@ -32,9 +31,9 @@ private:
     Dice dices[5];
     Player player;
     uint32_t num_players = 0;
-    uint32_t start;
+    uint32_t cat;
     // Dynamically allocate an array of Player objects
-    Player* players = new Player[num_players];
+    Player* players = nullptr;
 };
 
 #endif //YAHTZEE_GAME_HPP
